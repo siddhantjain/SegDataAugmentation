@@ -35,6 +35,8 @@ alexNetSize = [227 227];
 for fIndex =  1:length(imageClassNames)
     imageClassName = imageClassNames{fIndex};
     annotationIndex = find(strcmp(annotationClassNames, imageClassName));
+    
+    %no annotation exists for this class, so skip
     if length(annotationIndex) == 0
         continue;
     end
