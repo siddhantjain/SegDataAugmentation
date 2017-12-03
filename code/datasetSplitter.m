@@ -1,46 +1,46 @@
 load('../data/caltech101')
 
-% for index = 1:length(trainingSet.Files)
-%     imPath = trainingSet.Files{index};
-%     imPathSplit = strsplit(imPath,{'/'});
-%     
-%     newImPath = '';
-%     for partIndex = 2:numel(imPathSplit)
-%         if partIndex == numel(imPathSplit)-2
-%             newImPath = strcat(newImPath,'/','train'); 
-%         end
-%         newImPath = strcat(newImPath,'/',imPathSplit(partIndex));
-%         if partIndex == numel(imPathSplit)-1
-%            if ~exist(newImPath{1}, 'dir')
-%                 mkdir(newImPath{1});
-%            end 
-%         end
-%     end
-%     image = imread(imPath);
-%     imwrite(image,newImPath{1});
-%     
-% end
-% 
-% for index = 1:length(testSet.Files)
-%     imPath = testSet.Files{index};
-%     imPathSplit = strsplit(imPath,{'/'});
-%     
-%     newImPath = '';
-%     for partIndex = 2:numel(imPathSplit)
-%         if partIndex == numel(imPathSplit)-2
-%             newImPath = strcat(newImPath,'/','test'); 
-%         end
-%         newImPath = strcat(newImPath,'/',imPathSplit(partIndex));
-%         if partIndex == numel(imPathSplit)-1
-%            if ~exist(newImPath{1}, 'dir')
-%                 mkdir(newImPath{1});
-%            end 
-%         end
-%     end
-%     image = imread(imPath);
-%     imwrite(image,newImPath{1});
-%     
-% end
+for index = 1:length(trainingSet.Files)
+    imPath = trainingSet.Files{index};
+    imPathSplit = strsplit(imPath,{'/'});
+    
+    newImPath = '';
+    for partIndex = 2:numel(imPathSplit)
+        if partIndex == numel(imPathSplit)-2
+            newImPath = strcat(newImPath,'/','train'); 
+        end
+        newImPath = strcat(newImPath,'/',imPathSplit(partIndex));
+        if partIndex == numel(imPathSplit)-1
+           if ~exist(newImPath{1}, 'dir')
+                mkdir(newImPath{1});
+           end 
+        end
+    end
+    image = imread(imPath);
+    imwrite(image,newImPath{1});
+    
+end
+
+for index = 1:length(testSet.Files)
+    imPath = testSet.Files{index};
+    imPathSplit = strsplit(imPath,{'/'});
+    
+    newImPath = '';
+    for partIndex = 2:numel(imPathSplit)
+        if partIndex == numel(imPathSplit)-2
+            newImPath = strcat(newImPath,'/','test'); 
+        end
+        newImPath = strcat(newImPath,'/',imPathSplit(partIndex));
+        if partIndex == numel(imPathSplit)-1
+           if ~exist(newImPath{1}, 'dir')
+                mkdir(newImPath{1});
+           end 
+        end
+    end
+    image = imread(imPath);
+    imwrite(image,newImPath{1});
+    
+end
 
 
 %for annotations%

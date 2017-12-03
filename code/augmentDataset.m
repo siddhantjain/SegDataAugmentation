@@ -1,4 +1,4 @@
-outputFolder = fullfile('../data/', 'caltech101');
+outputFolder = fullfile('../data/', 'caltech101/train');
 rootFolderImages = fullfile(outputFolder, '101_ObjectCategories');
 rootFolderMasks = fullfile(outputFolder, 'masks/class_bg_masks');
 rootFolderBackgrounds = fullfile(outputFolder, 'masks/mean_background');
@@ -38,12 +38,14 @@ for fIndex =  1:length(imageClassNames)
     imagePaths = dir(strcat(folderNamesI(fIndex).folder,'/',imageClassName));
     maskPaths = dir(strcat(folderNamesM(maskIndex).folder,'/',imageClassName));
     
-    
 
     
     imagePaths = imagePaths(~ismember({imagePaths.name},{'.','..','.DS_Store'}));
     maskPaths = maskPaths(~ismember({maskPaths.name},{'.','..','.DS_Store'}));
     
+    if(length(maskPaths)==0)
+        continue;
+    end
     destinationFolder = strcat(destinationFolderAugmented,'/',imageClassName);
     if ~exist(destinationFolder, 'dir')
         mkdir(destinationFolder);

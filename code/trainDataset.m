@@ -1,5 +1,5 @@
 %load the training features and labels
-dataset = load('../data/caltech101.mat');
+dataset = load('../data/caltech101Augmented.mat');
 
 trainingSet = dataset.trainingSet;
 net = alexnet();
