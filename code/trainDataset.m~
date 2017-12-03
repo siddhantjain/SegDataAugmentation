@@ -1,14 +1,14 @@
 %load the training features and labels
-dataset = load('../data/caltech101.mat');
+dataset = load('../data/caltech101');
 
 trainingSet = dataset.trainingSet;
-net = googlenet();
+net = alexnet();
 featureLayer = 'fc7';
 trainingFeatures = activations(net, trainingSet, featureLayer, ...
     'MiniBatchSize', 32, 'OutputAs', 'columns');
 
 % Get training labels from the trainingSet
-trainingLabels = trainingSet.Labels;
+vtrainingLabels = trainingSet.Labels;
 
 % Train multiclass SVM classifier using a fast linear solver, and set
 % 'ObservationsIn' to 'columns' to match the arrangement used for training
@@ -16,4 +16,3 @@ trainingLabels = trainingSet.Labels;
 classifier = fitcecoc(trainingFeatures, trainingLabels, ...
     'Learners', 'Linear', 'Coding', 'onevsall', 'ObservationsIn', 'columns');
 
-save('../models/trained_classifier.mat','classifier');

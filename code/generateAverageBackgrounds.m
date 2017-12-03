@@ -52,8 +52,8 @@ for fIndex =  1:length(imageClassNames)
     averageClassBackground = zeros([alexNetSize ,3]);
     averageClassBackgroundMask = ones(alexNetSize);
     
-    destinationFolder = strcat(outputFolder,'/masks/',imageClassName);
-    destinationFolderBg = strcat(outputFolder,'/masks/mean_background');
+    destinationFolder = strcat(outputFolder,'/masks/class_bg_masks/',imageClassName);
+    
     if ~exist(destinationFolder, 'dir')
         mkdir(destinationFolder);
     end
@@ -79,6 +79,6 @@ for fIndex =  1:length(imageClassNames)
     averageClassBackground = averageClassBackground ./ averageClassBackgroundMask;
     %TODO: consider dividing this by 255, instead of typecasting it to
     %uint8 and hence losing information in float value.
-    avClassBgForSave = uint8(averageClassBackground);
-    save(strcat(destinationFolderBg,'/',imageClassName,'.mat'),'avClassBgForSave');
+    meanBgImage = uint8(averageClassBackground);
+    save(strcat(destinationFolderBg,'/',imageClassName,'.mat'),'meanBgImage');
 end
