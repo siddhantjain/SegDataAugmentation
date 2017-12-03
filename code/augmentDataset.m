@@ -2,6 +2,7 @@ outputFolder = fullfile('../data/', 'caltech101');
 rootFolderImages = fullfile(outputFolder, '101_ObjectCategories');
 rootFolderMasks = fullfile(outputFolder, 'masks/class_bg_masks');
 rootFolderBackgrounds = fullfile(outputFolder, 'masks/mean_background');
+rootFolderAugmented = fullfile(outputFolder, '101_ObjectCategoriesAugmented');
 
 folderNamesI = dir(rootFolderImages);
 folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
@@ -20,7 +21,7 @@ for index = 1:numel(folderNamesM)
     maskClassNames{end+1} = folderNamesM(index).name; 
 end
 
-destinationFolderAugmented = strcat(rootFolderImages,'/Data_Augmented');
+destinationFolderAugmented = strcat(rootFolderAugmented,'/Data_Augmented');
 if ~exist(destinationFolderAugmented, 'dir')
     mkdir(destinationFolderAugmented);
 end
@@ -37,6 +38,9 @@ for fIndex =  1:length(imageClassNames)
     imagePaths = dir(strcat(folderNamesI(fIndex).folder,'/',imageClassName));
     maskPaths = dir(strcat(folderNamesM(maskIndex).folder,'/',imageClassName));
     
+    
+
+    
     imagePaths = imagePaths(~ismember({imagePaths.name},{'.','..','.DS_Store'}));
     maskPaths = maskPaths(~ismember({maskPaths.name},{'.','..','.DS_Store'}));
     
@@ -45,12 +49,13 @@ for fIndex =  1:length(imageClassNames)
         mkdir(destinationFolder);
     end
     
+    meanPath = strcat(rootFolderBackgrounds, '/', imageClassName, '.mat');
     for iIndex = 1:length(imagePaths)
         iPath = strcat(imagePaths(iIndex).folder,'/',imagePaths(iIndex).name);
         mPath = strcat(maskPaths(iIndex).folder,'/',maskPaths(iIndex).name);
-        meanPath = strcat(rootFolderBackgrounds, '/', imagePaths(iIndex).name, '.mat');
         
-        augmentedImage = removeBackground(iPath,mPath, meanPath);
+        
+        augmentedImage = replaceBackground(iPath,mPath, meanPath);
         actualImage = imread(iPath);
         imageFname = strcat(destinationFolder,'/',imagePaths(iIndex).name);
         imwrite(actualImage, imageFname);
@@ -58,7 +63,7 @@ for fIndex =  1:length(imageClassNames)
         iName = imagePaths(iIndex).name;
         iNameSplit = strsplit(iName,'.');
         augmentedFname = strcat(destinationFolder,'/',iNameSplit(1), '_augmented.jpg');
-        imwrite(augmentedImage, augmentedFname);
+        imwrite(augmentedImage, augmentedFname{1});
         
     end
 end
