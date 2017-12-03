@@ -1,13 +1,14 @@
 url = 'http://www.vision.caltech.edu/Image_Datasets/Caltech101/101_ObjectCategories.tar.gz';
 % Store the output in a temporary folder
 outputFolder = fullfile('../data/', 'caltech101'); % define output folder
-if ~exist(outputFolder, 'dir') % download only once
+rootFolder = fullfile(outputFolder, '101_ObjectCategories');
+
+if ~exist(rootFolder, 'dir') % download only once
     disp('Downloading 126MB Caltech101 data set...');
     untar(url, outputFolder);
 end
 
 
-rootFolder = fullfile(outputFolder, '101_ObjectCategories');
 categoriesF = dir(rootFolder);
 categoriesF = categoriesF(~ismember({categoriesF.name},{'.','..'}));
 
