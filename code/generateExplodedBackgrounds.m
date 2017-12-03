@@ -18,19 +18,12 @@ end
 for index = 1:numel(folderNamesA)
     annotationClassNames{end+1} = folderNamesA(index).name; 
 end
-
-% 
-% for fIndex = 1:length(folderNamesA)
-%      if(~ismember(folderNamesA(fIndex).name,anns))
-%          folderNamesA(fIndex)
-%      end
-% end
-
-destinationFolderBg = strcat(outputFolder,'/masks/mean_background');
+    
+destinationFolderBg = strcat(outputFolder,'/masks/first_background');
 if ~exist(destinationFolderBg, 'dir')
     mkdir(destinationFolderBg);
 end
-    
+
 alexNetSize = [227 227];
 for fIndex =  1:length(imageClassNames)
     imageClassName = imageClassNames{fIndex};
@@ -53,8 +46,7 @@ for fIndex =  1:length(imageClassNames)
         continue;
     end
     
-    averageClassBackground = zeros([alexNetSize ,3]);
-    averageClassBackgroundMask = ones(alexNetSize);
+    firstClassBackground = zeros([alexNetSize ,3]);
     
     destinationFolder = strcat(outputFolder,'/masks/class_bg_masks/',imageClassName);
     
@@ -62,7 +54,7 @@ for fIndex =  1:length(imageClassNames)
         mkdir(destinationFolder);
     end
 
-    for iIndex = 1:length(imagePaths)
+    for iIndex = 1:1
         iPath = strcat(imagePaths(iIndex).folder,'/',imagePaths(iIndex).name);
         aPath = strcat(annotationPaths(iIndex).folder,'/',annotationPaths(iIndex).name);
         backgroundMask = segmentBackground(iPath,aPath);
@@ -77,12 +69,10 @@ for fIndex =  1:length(imageClassNames)
         bgFname = strcat(destinationFolder,'/','mask_',iNameSplit(2),'.mat');
         save(bgFname{1},'backgroundMask');
         
-        averageClassBackground = averageClassBackground + maskedBgImage;
-        averageClassBackgroundMask = averageClassBackgroundMask + backgroundMask; 
+        firstClassBackground = firstClassBackground + maskedBgImage;
     end
-    averageClassBackground = averageClassBackground ./ averageClassBackgroundMask;
     %TODO: consider dividing this by 255, instead of typecasting it to
     %uint8 and hence losing information in float value.
-    bgImage = uint8(averageClassBackground);
+    bgImage = uint8(firstClassBackground);
     save(strcat(destinationFolderBg,'/',imageClassName,'.mat'),'bgImage');
 end

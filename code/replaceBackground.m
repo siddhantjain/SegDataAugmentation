@@ -11,7 +11,7 @@ foregroundMask = uint8(~backgroundMask);
 
 %Size is alexnet size [227, 227, 3]
 newBackgroundStruct = load(targetBackground);
-newBackground = newBackgroundStruct.meanBgImage;
+newBackground = newBackgroundStruct.bgImage;
 
 %To apply the RxC mask on image of size RxCx3
 image = imresize(image, alexnetSize);

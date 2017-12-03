@@ -18,12 +18,24 @@ testDataset;
 disp('Normal accuracy');
 accuracy
 
-generateAverageBackgrounds;
-augmentDataset;
-generateDatasetAugmented;
-trainAugmentedDataset;
+%Average Augmentation%
+
+% generateAverageBackgrounds;
+% augmentDataset;
+% generateDatasetAugmented;
+% trainAugmentedDataset;
+% testDataset;
+% 
+% disp('Augmented accuracy');
+% accuracy
+
+% Exploded Augmentation
+generateExplodedBackgrounds;
+explodeDataset;
+generateDatasetExploded;
+trainExplodedDataset;
 testDataset;
 
-disp('Augmented accuracy');
+disp('Exploded accuracy');
 accuracy
 
