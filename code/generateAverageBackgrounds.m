@@ -47,7 +47,9 @@ for fIndex =  1:length(imageClassNames)
     imagePaths = imagePaths(~ismember({imagePaths.name},{'.','..','.DS_Store'}));
     annotationPaths = annotationPaths(~ismember({annotationPaths.name},{'.','..','.DS_Store'}));
 
-    
+    if(length(annotationPaths) == 0 )
+        continue;
+    end
     
     averageClassBackground = zeros([alexNetSize ,3]);
     averageClassBackgroundMask = ones(alexNetSize);
