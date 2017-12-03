@@ -18,5 +18,5 @@ image = imresize(image, alexnetSize);
 imForeground = bsxfun(@times, image, cast(foregroundMask,class(image)));
 imBackground = bsxfun(@times, newBackground, cast(backgroundMask,class(newBackground)));
 
-outputImage = imBackground + imForeground;
+outputImage = uint8(imBackground) + uint8(imForeground);
 end

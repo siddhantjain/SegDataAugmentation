@@ -18,11 +18,7 @@ end
 for index = 1:numel(folderNamesA)
     annotationClassNames{end+1} = folderNamesA(index).name; 
 end
-    
-destinationFolderBg = strcat(outputFolder,'/masks/first_background');
-if ~exist(destinationFolderBg, 'dir')
-    mkdir(destinationFolderBg);
-end
+   
 
 alexNetSize = [227 227];
 for fIndex =  1:length(imageClassNames)
@@ -46,10 +42,12 @@ for fIndex =  1:length(imageClassNames)
         continue;
     end
     
-    firstClassBackground = zeros([alexNetSize ,3]);
+    destinationFolderBg = strcat(outputFolder,'/masks/class_bg/',imageClassName);
+    if ~exist(destinationFolderBg, 'dir')
+        mkdir(destinationFolderBg);
+    end
     
     destinationFolder = strcat(outputFolder,'/masks/class_bg_masks/',imageClassName);
-    
     if ~exist(destinationFolder, 'dir')
         mkdir(destinationFolder);
     end
@@ -59,20 +57,18 @@ for fIndex =  1:length(imageClassNames)
         aPath = strcat(annotationPaths(iIndex).folder,'/',annotationPaths(iIndex).name);
         backgroundMask = segmentBackground(iPath,aPath);
         backgroundImage = imread(iPath);
-        maskedBgImage = bsxfun(@times, backgroundImage, cast(backgroundMask,class(backgroundImage)));
+        bgImage = bsxfun(@times, backgroundImage, cast(backgroundMask,class(backgroundImage)));
         
         backgroundMask = double(imresize(backgroundMask,alexNetSize));
-        maskedBgImage  = double(imresize(maskedBgImage,alexNetSize));
+        bgImage  = double(imresize(bgImage,alexNetSize));
         iName = imagePaths(iIndex).name;
         iNameSplit = strsplit(iName,{'_','.'});
         
-        bgFname = strcat(destinationFolder,'/','mask_',iNameSplit(2),'.mat');
-        save(bgFname{1},'backgroundMask');
+        bgMaskFname = strcat(destinationFolder,'/','mask_',iNameSplit(2),'.mat');
+        bgFname = strcat(destinationFolderBg,'/','background_',iNameSplit(2),'.mat');
+        save(bgMaskFname{1},'backgroundMask');
+        save(bgFname{1},'bgImage');
         
-        firstClassBackground = maskedBgImage;
     end
-    %TODO: consider dividing this by 255, instead of typecasting it to
-    %uint8 and hence losing information in float value.
-    bgImage = uint8(firstClassBackground);
-    save(strcat(destinationFolderBg,'/',imageClassName,'.mat'),'bgImage');
+    
 end
