@@ -1,3 +1,0 @@
-generateDataset;
-trainDataset;
-testDataset;

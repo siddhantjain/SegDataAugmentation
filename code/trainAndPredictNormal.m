@@ -20,14 +20,15 @@ accuracy
 
 %Average Augmentation%
 
-% generateAverageBackgrounds;
-% augmentDataset;
-% generateDatasetAugmented;
-% trainAugmentedDataset;
-% testDataset;
-% 
-% disp('Augmented accuracy');
-% accuracy
+generateAverageBackgrounds;
+augmentDataset;
+generateDatasetAugmented;
+trainAugmentedDataset;
+testDataset;
+
+disp('Augmented accuracy');
+accuracy
+
 
 % Exploded Augmentation
 generateExplodedBackgrounds;

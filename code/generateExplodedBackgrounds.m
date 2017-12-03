@@ -54,7 +54,7 @@ for fIndex =  1:length(imageClassNames)
         mkdir(destinationFolder);
     end
 
-    for iIndex = 1:1
+    for iIndex = 1:length(imagePaths)
         iPath = strcat(imagePaths(iIndex).folder,'/',imagePaths(iIndex).name);
         aPath = strcat(annotationPaths(iIndex).folder,'/',annotationPaths(iIndex).name);
         backgroundMask = segmentBackground(iPath,aPath);
@@ -69,7 +69,7 @@ for fIndex =  1:length(imageClassNames)
         bgFname = strcat(destinationFolder,'/','mask_',iNameSplit(2),'.mat');
         save(bgFname{1},'backgroundMask');
         
-        firstClassBackground = firstClassBackground + maskedBgImage;
+        firstClassBackground = maskedBgImage;
     end
     %TODO: consider dividing this by 255, instead of typecasting it to
     %uint8 and hence losing information in float value.
