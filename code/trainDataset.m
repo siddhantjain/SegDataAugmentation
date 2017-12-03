@@ -2,7 +2,7 @@
 dataset = load('../data/caltech101.mat');
 
 trainingSet = dataset.trainingSet;
-net = googlenet();
+net = alexnet();
 featureLayer = 'fc7';
 trainingFeatures = activations(net, trainingSet, featureLayer, ...
     'MiniBatchSize', 32, 'OutputAs', 'columns');
