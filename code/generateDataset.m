@@ -12,7 +12,7 @@ end
 categoriesF = dir(rootFolder);
 categoriesF = categoriesF(~ismember({categoriesF.name},{'.','..'}));
 
-categories = {}
+categories = {};
 for index = 1:numel(categoriesF)
     categories{end+1} = categoriesF(index).name; 
 end

@@ -1,4 +1,4 @@
-outputFolder = fullfile('../data/', 'caltech101');
+outputFolder = fullfile('../data/', 'caltech101/train');
 rootFolderImages = fullfile(outputFolder, '101_ObjectCategories');
 rootFolderAnnotations = fullfile(outputFolder, 'Annotations');
 
