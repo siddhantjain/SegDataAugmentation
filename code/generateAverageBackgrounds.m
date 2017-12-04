@@ -4,12 +4,12 @@ rootFolderImages = fullfile(outputFolder, '101_ObjectCategories');
 rootFolderAnnotations = fullfile(outputFolder, 'Annotations');
 
 folderNamesI = dir(rootFolderImages);
-%folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
-folderNamesI = folderNamesI(ismember({folderNamesI.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lily'}));
+%folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store','BACKGROUND_Google'}));
+folderNamesI = folderNamesI(ismember({folderNamesI.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
 
 folderNamesA = dir(rootFolderAnnotations);
-%folderNamesA = folderNamesA(~ismember({folderNamesA.name},{'.','..','.DS_Store'}));
-folderNamesA = folderNamesA(ismember({folderNamesI.name},{'lotus','butterfly','cannon','ceiling_fan','water_lily'}));
+%folderNamesA = folderNamesA(~ismember({folderNamesA.name},{'.','..','.DS_Store','BACKGROUND_Google'}));
+folderNamesA = folderNamesA(ismember({folderNamesI.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
 imageClassNames = {};
 annotationClassNames = {};
 

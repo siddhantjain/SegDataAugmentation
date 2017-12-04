@@ -5,12 +5,12 @@ rootFolderBackgrounds = fullfile(outputFolder, 'masks/mean_background');
 rootFolderAugmented = fullfile(outputFolder, '101_ObjectCategoriesAugmented');
 
 folderNamesI = dir(rootFolderImages);
-%folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
-folderNamesI =  folderNamesI(ismember({folderNamesI.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}));
+%folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store','BACKGROUND_Google'}));
+folderNamesI =  folderNamesI(ismember({folderNamesI.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
 
 folderNamesM = dir(rootFolderMasks);
-%folderNamesM = folderNamesM(~ismember({folderNamesM.name},{'.','..','.DS_Store'}));
-folderNamesM = folderNamesM(ismember({folderNamesM.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}));
+%folderNamesM = folderNamesM(~ismember({folderNamesM.name},{'.','..','.DS_Store','BACKGROUND_Google'}));
+folderNamesM = folderNamesM(ismember({folderNamesM.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
 imageClassNames = {};
 maskClassNames = {};
 
