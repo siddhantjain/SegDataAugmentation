@@ -9,14 +9,15 @@ if ~exist(rootFolder, 'dir') % download only once
 end
 
 
-categoriesF = dir(rootFolder);
-categoriesF = categoriesF(~ismember({categoriesF.name},{'.','..'}));
+%categoriesF = dir(rootFolder);
+%categoriesF = categoriesF(~ismember({categoriesF.name},{'.','..'}));
 
-categories = {};
-for index = 1:numel(categoriesF)
-    categories{end+1} = categoriesF(index).name; 
-end
+%categories = {};
+%for index = 1:numel(categoriesF)
+%    categories{end+1} = categoriesF(index).name; 
+%end
 
+categories = {'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}
 imds = imageDatastore(fullfile(rootFolder, categories), 'LabelSource', 'foldernames');
 
 tbl = countEachLabel(imds);

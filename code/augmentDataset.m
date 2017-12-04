@@ -5,11 +5,12 @@ rootFolderBackgrounds = fullfile(outputFolder, 'masks/mean_background');
 rootFolderAugmented = fullfile(outputFolder, '101_ObjectCategoriesAugmented');
 
 folderNamesI = dir(rootFolderImages);
-folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
+%folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
+folderNamesI =  folderNamesI(ismember({folderNamesI.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}));
 
 folderNamesM = dir(rootFolderMasks);
-folderNamesM = folderNamesM(~ismember({folderNamesM.name},{'.','..','.DS_Store'}));
-
+%folderNamesM = folderNamesM(~ismember({folderNamesM.name},{'.','..','.DS_Store'}));
+folderNamesM = folderNamesM(ismember({folderNamesM.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}));
 imageClassNames = {};
 maskClassNames = {};
 

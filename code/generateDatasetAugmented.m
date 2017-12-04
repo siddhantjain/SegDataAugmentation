@@ -5,10 +5,12 @@ rootFolder = fullfile(outputFolder, 'train/101_ObjectCategoriesAugmented/Data_Au
 categoriesF = dir(rootFolder);
 categoriesF = categoriesF(~ismember({categoriesF.name},{'.','..'}));
 
-categories = {};
-for index = 1:numel(categoriesF)
-    categories{end+1} = categoriesF(index).name; 
-end
+%categories = {};
+%for index = 1:numel(categoriesF)
+%    categories{end+1} = categoriesF(index).name; 
+%end
+
+categories = {'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'};
 
 imds = imageDatastore(fullfile(rootFolder, categories), 'LabelSource', 'foldernames');
 

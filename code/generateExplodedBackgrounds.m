@@ -3,10 +3,12 @@ rootFolderImages = fullfile(outputFolder, '101_ObjectCategories');
 rootFolderAnnotations = fullfile(outputFolder, 'Annotations');
 
 folderNamesI = dir(rootFolderImages);
-folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
+%folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store'}));
+folderNamesI  = folderNamesI(ismember({folderNamesI.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}));
 
 folderNamesA = dir(rootFolderAnnotations);
-folderNamesA = folderNamesA(~ismember({folderNamesA.name},{'.','..','.DS_Store'}));
+%folderNamesA = folderNamesA(~ismember({folderNamesA.name},{'.','..','.DS_Store'}));
+folderNamesA = folderNamesA(ismember({folderNamesA.name},{'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'}));
 
 imageClassNames = {};
 annotationClassNames = {};

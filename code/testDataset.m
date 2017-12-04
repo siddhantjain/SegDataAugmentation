@@ -1,4 +1,4 @@
-dataset = load('../data/caltech101.mat');
+dataset = load('../data/caltech101.mat'); 
 models = load('../models/trained_classifier.mat');
 
 testSet = dataset.testSet;
@@ -15,3 +15,4 @@ testLabels = testSet.Labels;
 match = testLabels == predictedLabels;
 correct = sum(match(:));
 accuracy = correct/numel(match);
+confMat = confusionmat(testLabels,predictedLabels);

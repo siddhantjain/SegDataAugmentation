@@ -6,9 +6,11 @@ categoriesF = dir(rootFolder);
 categoriesF = categoriesF(~ismember({categoriesF.name},{'.','..'}));
 
 categories = {};
-for index = 1:numel(categoriesF)
-    categories{end+1} = categoriesF(index).name; 
-end
+%for index = 1:numel(categoriesF)
+%    categories{end+1} = categoriesF(index).name; 
+%end
+
+categories = {'lotus','butterfly','cannon','ceiling_fan','octopus','water_lilly'};
 
 imds = imageDatastore(fullfile(rootFolder, categories), 'LabelSource', 'foldernames');
 

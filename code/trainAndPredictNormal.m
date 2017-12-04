@@ -20,14 +20,14 @@ accuracy
 
 %Average Augmentation%
 
-generateAverageBackgrounds;
-augmentDataset;
-generateDatasetAugmented;
-trainAugmentedDataset;
-testDataset;
+%generateAverageBackgrounds;
+%augmentDataset;
+%generateDatasetAugmented;
+%trainAugmentedDataset;
+%testDataset;
 
-disp('Augmented accuracy');
-accuracy
+%disp('Augmented accuracy');
+%accuracy
 
 
 % Exploded Augmentation
