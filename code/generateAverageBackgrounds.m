@@ -6,10 +6,13 @@ rootFolderAnnotations = fullfile(outputFolder, 'Annotations');
 folderNamesI = dir(rootFolderImages);
 %folderNamesI = folderNamesI(~ismember({folderNamesI.name},{'.','..','.DS_Store','BACKGROUND_Google'}));
 folderNamesI = folderNamesI(ismember({folderNamesI.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
+disp('folderNamesI printed below');
+disp(folderNamesI);
 
 folderNamesA = dir(rootFolderAnnotations);
 %folderNamesA = folderNamesA(~ismember({folderNamesA.name},{'.','..','.DS_Store','BACKGROUND_Google'}));
-folderNamesA = folderNamesA(ismember({folderNamesI.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
+folderNamesA = folderNamesA(ismember({folderNamesA.name},{'anchor','butterfly','platypus','chair','crayfish','lobster'}));
+
 imageClassNames = {};
 annotationClassNames = {};
 

@@ -31,6 +31,6 @@ imds = splitEachLabel(imds, minSetCount, 'randomize');
 imds.ReadFcn = @(filename)readAndPreprocessImage(filename);
 
 
-[trainingSet, testSet] = splitEachLabel(imds, 0.5, 'randomize');
+[trainingSet, testSet] = splitEachLabel(imds, 0.6, 'randomize');
 
 save('../data/caltech101.mat','trainingSet','testSet');
